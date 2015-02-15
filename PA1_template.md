@@ -40,8 +40,8 @@ First we create a table with the total number of steps taken each day, ignoring 
 
 ```r
 spd <- dat %>%
-    group_by(date) %>%
-    summarise(totalSteps = sum(steps, na.rm = TRUE))
+       group_by(date) %>%
+       summarise(totalSteps = sum(steps, na.rm = TRUE))
 ```
 
 We then make a histogram of the total number of steps taken each day.
@@ -161,7 +161,7 @@ Using **dat2** We do the same computation we did with **dat** :
 ```r
 spd2 <- dat2 %>%
         group_by(date) %>%
-        summarise(totalSteps = sum(steps, na.rm = TRUE))
+        summarise(totalSteps = sum(steps))
 
 g_totalSteps2 <- ggplot(spd2, aes(totalSteps)) +
                  geom_histogram(color="white", binwidth = 1000) +
@@ -192,7 +192,7 @@ median(spd2$totalSteps)
 
 We therefore observe that after replacing NAs by interval median:
 
-- the mean is larger by 1.5996972 %
+- the mean is larger by 1.6 %
 - the median stays the same
 - the overall distribution seams shifted on the right (larger values)
 
@@ -231,7 +231,7 @@ First we compute the mean number of steps by dayType and interval.
 ```r
 spi2 <- dat2 %>%
         group_by(dayType, interval) %>%
-        summarise(averageSteps = mean(steps, na.rm = TRUE))
+        summarise(averageSteps = mean(steps))
 ```
 
 We then make a time series plot of the avearge of steps taken each 5-minutes 
